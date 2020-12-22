@@ -50,13 +50,44 @@ data_size=len(all_data)
 
 ## training and test data
 ```
-bpr model for bundle
+## bpr model for bundle
 training_data = all_data[:int(0.8*data_size)]
 test_data =[int(0.8*data_size):]
 
-bpr_item model for items
+## bpr_item model for items
 training_data_2 =all_item_data[:int(0.8*len(all_item_data))]
 test_data_2 =all_item_data[int(0.8*len(all_item_data)):]
 ```
 
+## graph sampling (图采样）
+```
+def check_tuple(tuple_1, tuple_2, user_bundle_map)
+(whether the tuple 1 and tuple_2 are connected
+    True： unconnected
+    False: connected)
 
+def graph_sampling(n_samples, training_data, user_bundle_map)
+(sgd_users=[]
+ sgd_pos_items, sgd_neg_items=[], []
+ while n_samples>0
+    choose Tuple_1 and Tuple_2 randomly (user, bundle)
+    iteration =100
+    while tuple_1 and tuple_2 are connected
+        choose tuple_2 randomly and reduce iteration by one
+        if iteration=0; break
+    if iteration=0; continue; (which means tuple1 and 2 connected)
+    sgd_users.append (tuple_1[0])
+    sgd_neg_items.append(tuple_2[1])
+    sgd_pos_items.append(tuple_1[1])
+    
+    sgd_users.append(tuple_2[0])
+    sgd_neg_items.append(tuple_1[1])
+    sgd_pos_items.append(tuple_2[1])
+    n_samples-=2
+   return sgd_users, sgd_pos_items, sgd_neg_items)
+```
+
+## Generate training data through graph sampling
+```
+sgd_train_users_items, sgd_train_pos_items, sgdz-train_neg_items = graph_sampling (len(training_data_2)*30, training_data_2, user_item_map)
+```
