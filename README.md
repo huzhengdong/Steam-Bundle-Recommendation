@@ -120,3 +120,17 @@ def get_test_data_items (test_data, train_data）
   )
   The purpose of this function is to choose the appropriate positive and negative items to test the correctness of the recommendation
 ```
+
+## Class BPR_Item(object)
+```
+ def __init__(self, rank, n_users, n_items, lambda_u = 0.0025, lambda_i = 0.0025, lambda_j = 0.00025, lambda_d = 0.0025, lambda_p = 0.00025, lambda_bias = 0.0, learning_rate = 0.05):
+ 
+```
+
+
+
+
+
+
+
+
