@@ -91,3 +91,32 @@ def graph_sampling(n_samples, training_data, user_bundle_map)
 ```
 sgd_train_users_items, sgd_train_pos_items, sgdz-train_neg_items = graph_sampling (len(training_data_2)*30, training_data_2, user_item_map)
 ```
+
+## Generate test data items
+```
+def data_to_dict(data)
+    data_dict = defaultdict(list)
+    items = set()
+    for (user, item) in data:
+        data_dict[user].append(item)
+        items.add(item)
+    return data_dict, set(data_dict.keys()), items
+    
+def get_test_data_items (test_data, train_data）
+(   users, pos_items, neg_items = [], [], []
+    train_dict, train_users, train_items = data_to_dict(train_data)
+    test_dict, test_users, test_items = data_to_dict(test_data)
+    for i, user in enumerate(test_dict.keys())
+        if user in train_users:
+            for pos_item in test_dict[user]:
+                if pos_item in train_items:
+                    for neg_item in train_items:
+                        if neg_item not in test_dict[user] and neg_item not
+                        in train_dict[user]
+                            users.append(user)
+                            pos_items.append(pos_item)
+                            neg_items.append(neg_item)
+  return users, pos_items, neg_items
+  )
+  The purpose of this function is to choose the appropriate positive and negative items to test the correctness of the recommendation
+```
